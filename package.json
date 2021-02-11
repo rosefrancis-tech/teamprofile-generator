@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/rosefrancis-tech/teamprofile-generator/issues"
   },
-  "homepage": "https://github.com/rosefrancis-tech/teamprofile-generator#readme"
+  "homepage": "https://github.com/rosefrancis-tech/teamprofile-generator#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
 }
