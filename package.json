@@ -1,0 +1,29 @@
+{
+  "name": "teamprofile-generator",
+  "version": "1.0.0",
+  "description": "Generates team member profile in html",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosefrancis-tech/teamprofile-generator.git"
+  },
+  "keywords": [
+    "node",
+    "npm",
+    "inquirer",
+    "jest",
+    "teamprofile"
+  ],
+  "author": "Rose",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosefrancis-tech/teamprofile-generator/issues"
+  },
+  "homepage": "https://github.com/rosefrancis-tech/teamprofile-generator#readme"
+}
