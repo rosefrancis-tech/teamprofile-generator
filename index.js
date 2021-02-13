@@ -1,6 +1,7 @@
 const Manager = require('./lib/Manager');
 const generatePage = require('./src/page-template');
-const generateHTML = require('./utils/generate-site.js');
+const {generateHTML, copyFile } = require('./utils/generate-site.js');
+
 const inquirer = require('inquirer');
 const employees = [];
 
@@ -70,7 +71,17 @@ const getManager = () => {
         return generatePage(employees);
     })
     .then(fileContent => {
-        return generateHTML(fileContent);
+        return generateHTML(fileContent)
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyFile();
+    })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+        console.log(err);
     });
 };
 
