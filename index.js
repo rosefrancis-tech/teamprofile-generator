@@ -193,6 +193,44 @@ const getTeamMember = () => {
             });
         }
 
+        if (teamMember.role === 'Intern') {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'school',
+                    message: 'Enter school name (Required)',
+                    validate: schoolInput => {
+                        if (schoolInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter school name');
+                            return false;
+                        }
+                    }
+                }
+            ])
+            .then(intern => {
+                const internData = new Intern(intern.name, intern.id, intern.email, intern.github);
+                employees.push(internData);
+                // askConfirm();
+                return generatePage(employees);
+            })
+            .then(fileContent => {
+                return generateHTML(fileContent)
+            })
+            .then(writeFileResponse => {
+                console.log(writeFileResponse);
+                return copyFile();
+            })
+            .then(copyFileResponse => {
+                console.log(copyFileResponse);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
+
+
     })
 };
 
