@@ -20,13 +20,14 @@ module.exports = function(employees) {
     <body>
       <header>
         <div class="container flex-row justify-space-between align-center py-3">
-          <h1 class="page-title text-secondary bg-dark py-2 px-3">Teams</h1>
+          <h1 class="page-title text-secondary bg-dark py-2 px-3">Team Profile</h1>
           <nav class="flex-row">
-            <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="">TeamName</a>
+            <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="">Company Name</a>
           </nav>
         </div>
       </header>
       <main class="container my-5">
+      
       ${employees[0].name}
       </main>
       <footer class="container text-center py-3">
