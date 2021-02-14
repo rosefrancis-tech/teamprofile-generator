@@ -1,8 +1,9 @@
-const Manager = require('../lib/Manager');
+//const Manager = require('../lib/Manager');
 
 // create template literal
-module.exports = function(employees) {
-     console.log(employees[0].name);
+module.exports = employeedata => {
+     //console.log(employeedata);
+     //console.log(employeedata[0].name);
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -28,7 +29,8 @@ module.exports = function(employees) {
       </header>
       <main class="container my-5">
       
-      ${employees[0].name}
+    1. ${employeedata[0].name}
+
       </main>
       <footer class="container text-center py-3">
         <h3 class="text-dark">&copy; ${new Date().getFullYear()} by Rose</h3>
@@ -37,3 +39,5 @@ module.exports = function(employees) {
     </html>
     `;
   };
+
+  //module.exports = generatePage;

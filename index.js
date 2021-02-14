@@ -2,7 +2,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const generatePage = require('./src/page-template');
-const {generateHTML, copyFile } = require('./utils/generate-site.js');
+const {generateHTML, copyCSS} = require('./utils/generate-site.js');
 
 const inquirer = require('inquirer');
 const employees = [];
@@ -85,29 +85,14 @@ const getManager = () => {
     .then(manager => {
         const managerData = new Manager(manager.name, manager.id, manager.email, manager.officeNumber);
         employees.push(managerData);
+        console.log(`
+    ** Team Members **
+        `);
         getTeamMember();
-        //return generatePage(employees);
-    })/*
-    .then(fileContent => {
-        return generateHTML(fileContent)
-    })
-    .then(writeFileResponse => {
-        console.log(writeFileResponse);
-        return copyFile();
-    })
-    .then(copyFileResponse => {
-        console.log(copyFileResponse);
-    })
-    .catch(err => {
-        console.log(err);
-    });*/
+    });
 };
 
 const getTeamMember = () => {
-    console.log(`
-    ** Team Members **
-    `);
-
     inquirer.prompt([
         {
             type: 'list',
@@ -166,31 +151,28 @@ const getTeamMember = () => {
                         if (githubInput) {
                             return true;
                         } else {
-                            console.log('Please enter username');
+                            console.log('Please enter github username');
                             return false;
                         }
                     }
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmAddTeamMember',
+                    message: 'Would you like to add another team member?',
+                    default: false
                 }
             ])
             .then(engineer => {
-                const engineerData = new Engineer(engineer.name, engineer.id, engineer.email, engineer.github);
+                const engineerData = new Engineer(teamMember.name, teamMember.id, teamMember.email, engineer.github);
                 employees.push(engineerData);
-                // askConfirm();
-                return generatePage(employees);
+                if (engineer.confirmAddTeamMember) {
+                    return getTeamMember();
+                }
+                if (engineer.confirmAddTeamMember === false) {
+                    createWebsite();
+                }
             })
-            .then(fileContent => {
-                return generateHTML(fileContent)
-            })
-            .then(writeFileResponse => {
-                console.log(writeFileResponse);
-                return copyFile();
-            })
-            .then(copyFileResponse => {
-                console.log(copyFileResponse);
-            })
-            .catch(err => {
-                console.log(err);
-            });
         }
 
         if (teamMember.role === 'Intern') {
@@ -207,31 +189,42 @@ const getTeamMember = () => {
                             return false;
                         }
                     }
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmAddTeamMember',
+                    message: 'Would you like to add another team member?',
+                    default: false
                 }
             ])
             .then(intern => {
-                const internData = new Intern(intern.name, intern.id, intern.email, intern.github);
+                const internData = new Intern(teamMember.name, teamMember.id, teamMember.email, intern.school);
                 employees.push(internData);
-                // askConfirm();
-                return generatePage(employees);
-            })
-            .then(fileContent => {
-                return generateHTML(fileContent)
-            })
-            .then(writeFileResponse => {
-                console.log(writeFileResponse);
-                return copyFile();
-            })
-            .then(copyFileResponse => {
-                console.log(copyFileResponse);
-            })
-            .catch(err => {
-                console.log(err);
+                if (intern.confirmAddTeamMember) {
+                    return getTeamMember();
+                }
+                if (intern.confirmAddTeamMember === false) {
+                    createWebsite();
+                }     
             });
         }
+    });
+};
 
-
+const createWebsite = () => {
+    
+    const fileContent = generatePage(employees);
+    generateHTML(fileContent)
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyCSS();
     })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+        console.log(err);
+    });  
 };
 
 getManager();
