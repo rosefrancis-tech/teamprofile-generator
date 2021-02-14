@@ -83,7 +83,7 @@ const getManager = () => {
         }
     ])
     .then(manager => {
-        const managerData = new Manager(manager.name, manager.id, manager.email, manager.officeNumber);
+        const managerData = new Manager(manager.name, manager.id, manager.email, manager.officeNumber, manager.teamname);
         employees.push(managerData);
         console.log(`
     ** Team Members **
