@@ -25,7 +25,7 @@ This interactive project generates a webpage by accepting inputs from the user i
 * jest
 * Bootstrap
 
-![Mock-up image](/assets/images/mock-up.jpg "Mock-up image")
+![Mock-up image](/assets/images/mock-up.png "Mock-up image")
 ## User Story
 <details>
 <summary>Expand</summary>  
