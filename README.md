@@ -60,7 +60,7 @@ This interactive project generates a webpage by accepting inputs from the user i
 
 ## Live Project
 This is a Node.js application that runs from a machine.   
-[View sample html file](https://github.com/rosefrancis-tech/teamprofile-generator/blob/develop/dist/index.html) on github generated using this application.  
+[View sample html file](https://github.com/rosefrancis-tech/teamprofile-generator/blob/main/dist/index.html) on github generated using this application.  
 Please follow [installation](#Installation) and [usage](#Usage-Video) sections for using this application.
 
 ## GitHub Repository
