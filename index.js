@@ -1,12 +1,14 @@
+const inquirer = require('inquirer');
+
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const generatePage = require('./src/page-template');
 const {generateHTML, copyCSS} = require('./utils/generate-site.js');
 
-const inquirer = require('inquirer');
 const employees = [];
 
+// Function to get manager inputs
 const getManager = () => {
     console.log(`
     ===========
@@ -88,10 +90,12 @@ const getManager = () => {
         console.log(`
     ** Team Members **
         `);
+        // call function toget team member inputs
         getTeamMember();
     });
 };
 
+// Function to get team member inputs
 const getTeamMember = () => {
     inquirer.prompt([
         {
@@ -204,6 +208,7 @@ const getTeamMember = () => {
                     return getTeamMember();
                 }
                 if (intern.confirmAddTeamMember === false) {
+                    // call function to create html and css
                     createWebsite();
                 }     
             });
@@ -211,6 +216,7 @@ const getTeamMember = () => {
     });
 };
 
+// Function for write html and copy existing css files
 const createWebsite = () => {
     
     const fileContent = generatePage(employees);
@@ -227,4 +233,5 @@ const createWebsite = () => {
     });  
 };
 
+// call funtion to start by entering manager details
 getManager();
